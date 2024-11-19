@@ -1,5 +1,6 @@
-# SentVia
+# SentVia (built into Equicord by default)
 Automated fingerprint/end text
+
 
 ## Install
 

@@ -6,7 +6,7 @@
 
 import { MessageEvents } from "@api/index";
 import { definePluginSettings } from "@api/Settings";
-import { Devs, EquicordDevs } from "@utils/constants";
+import { Devs } from "@utils/constants";
 import definePlugin, { OptionType } from "@utils/types";
 
 const settings = definePluginSettings(
@@ -25,6 +25,7 @@ export default definePlugin({
     description: "Automated fingerprint/end text",
     authors: [
         Devs.Samwich,
+        // Import from EquicordDev for Equicord
         { name: "krystalskullofficial", id: 929208515883569182n }
     ],
     dependencies: ["MessageEventsAPI"],
