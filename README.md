@@ -6,8 +6,10 @@ Automated fingerprint/end text
 ![](https://cdn.nest.rip/uploads/ff0c5f9d-f906-45ef-946c-5ad0fbc63d46.png)
 
 > The icon
->
-> ![](https://cdn.nest.rip/uploads/3de6bcba-b4e3-452e-85f7-f1105945ab68.png)
+> 
+> 
+> ![](https://cdn.nest.rip/uploads/640d2d53-6bc4-43a7-a944-bd56a292659c.png) 
+> ![](https://cdn.nest.rip/uploads/69e4b67a-7fd6-43dd-96f4-cd044bbc4eac.png)
 
 ## Install
 
