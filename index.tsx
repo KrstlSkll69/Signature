@@ -9,7 +9,6 @@ import { ApplicationCommandInputType, ApplicationCommandOptionType, findOption, 
 import { findGroupChildrenByChildId, NavContextMenuPatchCallback } from "@api/ContextMenu";
 import { MessageEvents } from "@api/index";
 import { definePluginSettings, migratePluginSettings } from "@api/Settings";
-import { Devs, EquicordDevs } from "@utils/constants";
 import definePlugin, { OptionType } from "@utils/types";
 import { Menu, React } from "@webpack/common";
 
@@ -20,7 +19,7 @@ const settings = definePluginSettings(
     {
         name: {
             type: OptionType.STRING,
-            description: "Whatever you would after the 'Sent via' text",
+            description: "The signature that will be added to the end of your messages",
             default: "a chronic discord user"
         },
         showIcon: {
@@ -88,7 +87,8 @@ export default definePlugin({
     name: "Signature",
     description: "Automated fingerprint/end text",
     authors: [
-        EquicordDevs.KrystalSkull
+        // Import from EquicordDev for Equicord
+        { name: "krystalskullofficial", id: 929208515883569182n }
     ],
     dependencies: ["MessageEventsAPI", "ChatInputButtonAPI"],
 
