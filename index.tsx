@@ -8,7 +8,7 @@ import { addChatBarButton, ChatBarButton, removeChatBarButton } from "@api/ChatB
 import { ApplicationCommandInputType, ApplicationCommandOptionType, findOption, sendBotMessage } from "@api/Commands";
 import { findGroupChildrenByChildId, NavContextMenuPatchCallback } from "@api/ContextMenu";
 import { MessageEvents } from "@api/index";
-import { definePluginSettings } from "@api/Settings";
+import { definePluginSettings, migratePluginSettings } from "@api/Settings";
 import { Devs, EquicordDevs } from "@utils/constants";
 import definePlugin, { OptionType } from "@utils/types";
 import { Menu, React } from "@webpack/common";
@@ -41,7 +41,7 @@ const settings = definePluginSettings(
         },
     });
 
-const SentViaToggle: ChatBarButton = ({ isMainChat }) => {
+const SignatureToggle: ChatBarButton = ({ isMainChat }) => {
     const { isEnabled, showIcon } = settings.use(["isEnabled", "showIcon"]);
     const toggle = () => settings.store.isEnabled = !settings.store.isEnabled;
 
@@ -49,7 +49,7 @@ const SentViaToggle: ChatBarButton = ({ isMainChat }) => {
 
     return (
         <ChatBarButton
-            tooltip={isEnabled ? "Disable SentVia" : "Enable SentVia"}
+            tooltip={isEnabled ? "Disable Signature" : "Enable Signature"}
             onClick={toggle}
         >
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
@@ -74,8 +74,8 @@ const ChatBarContextCheckbox: NavContextMenuPatchCallback = children => {
 
     group.splice(idx + 1, 0,
         <Menu.MenuCheckboxItem
-            id="vc-sentVia"
-            label="Enable SentVia"
+            id="vc-Signature"
+            label="Enable Signature"
             checked={isEnabled}
             action={() => settings.store.isEnabled = !settings.store.isEnabled}
         />
@@ -83,24 +83,23 @@ const ChatBarContextCheckbox: NavContextMenuPatchCallback = children => {
 };
 
 
+migratePluginSettings("Signature", "SentVia");
 export default definePlugin({
-    name: "SentVia",
+    name: "Signature",
     description: "Automated fingerprint/end text",
     authors: [
-        Devs.Samwich,
-        // Import from EquicordDev for Equicord
-        { name: "krystalskullofficial", id: 929208515883569182n }
+        EquicordDevs.KrystalSkull
     ],
     dependencies: ["MessageEventsAPI", "ChatInputButtonAPI"],
 
     start: () => {
         if (settings.store.isEnabled) true;
-        addChatBarButton("SentVia", SentViaToggle);
+        addChatBarButton("Signature", SignatureToggle);
         MessageEvents.addPreSendListener(handleMessage);
     },
     stop: () => {
         if (settings.store.isEnabled) false;
-        removeChatBarButton("SentVia");
+        removeChatBarButton("Signature");
         MessageEvents.removePreSendListener(handleMessage);
 
     },
@@ -112,8 +111,8 @@ export default definePlugin({
     },
 
     commands: [{
-        name: "SentVia",
-        description: "Toggle whether the SentVia 'Signature'",
+        name: "Signature",
+        description: "Toggle whether the Signature 'Signature'",
         inputType: ApplicationCommandInputType.BUILT_IN,
         options: [
             {
@@ -126,7 +125,7 @@ export default definePlugin({
         execute: async (args, ctx) => {
             settings.store.isEnabled = !!findOption(args, "value", !settings.store.isEnabled);
             sendBotMessage(ctx.channel.id, {
-                content: settings.store.isEnabled ? "SentVia enabled!" : "SentVia disabled!",
+                content: settings.store.isEnabled ? "Signature enabled!" : "Signature disabled!",
             });
         },
     }],
@@ -136,7 +135,7 @@ export default definePlugin({
 
 // text processing injection processor
 function textProcessing(input: string) {
-    return `${input}\n> Sent via ${settings.store.name}`;
+    return `${input}\n> ${settings.store.name}`;
 }
 
 
