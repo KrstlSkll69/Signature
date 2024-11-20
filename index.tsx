@@ -13,7 +13,7 @@ import definePlugin, { OptionType } from "@utils/types";
 import { Menu, React } from "@webpack/common";
 
 
-// Big thank you too slientTyping where the chatbar stuff is 'borrowed' from
+// Big thank you too slientTyping where the chatbar/commands stuff is 'borrowed' from
 
 const settings = definePluginSettings(
     {
