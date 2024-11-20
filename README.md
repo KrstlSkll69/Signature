@@ -1,4 +1,4 @@
-# SentVia (built into Equicord by default)
+# Signature (built into Equicord by default)
 Automated fingerprint/end text
 
 
