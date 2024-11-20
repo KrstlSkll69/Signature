@@ -13,7 +13,7 @@ import definePlugin, { OptionType } from "@utils/types";
 import { Menu, React } from "@webpack/common";
 
 
-// Big thank you too slientTyping where the chatbar/commands stuff is 'borrowed' from
+// Big thank you too slientTyping
 
 const settings = definePluginSettings(
     {
@@ -59,6 +59,7 @@ const SignatureToggle: ChatBarButton = ({ isMainChat }) => {
     );
 };
 
+// Big thank you @thororen (discord) who helped me write this const
 const handleMessage = ((channelId, msg) => { if (!settings.store.isEnabled) return ""; return msg.content = textProcessing(msg.content); });
 
 const ChatBarContextCheckbox: NavContextMenuPatchCallback = children => {
@@ -82,7 +83,10 @@ const ChatBarContextCheckbox: NavContextMenuPatchCallback = children => {
 };
 
 
+// This is usless for the normal user but is helpful for development since I decided to rework to plugin
 migratePluginSettings("Signature", "SentVia");
+
+
 export default definePlugin({
     name: "Signature",
     description: "Automated fingerprint/end text",
@@ -112,12 +116,12 @@ export default definePlugin({
 
     commands: [{
         name: "Signature",
-        description: "Toggle whether the Signature 'Signature'",
+        description: "Toggle your signature",
         inputType: ApplicationCommandInputType.BUILT_IN,
         options: [
             {
                 name: "value",
-                description: "whether to hide or not that you're typing (default is toggle)",
+                description: "Toggle your signature (default is toggle)",
                 required: false,
                 type: ApplicationCommandOptionType.BOOLEAN,
             },
@@ -130,7 +134,6 @@ export default definePlugin({
         },
     }],
 });
-
 
 
 // text processing injection processor
