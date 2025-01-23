@@ -4,14 +4,13 @@
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
 
-import { addChatBarButton, ChatBarButton, removeChatBarButton } from "@api/ChatButtons";
+import { addChatBarButton, ChatBarButton, ChatBarButtonFactory, removeChatBarButton } from "@api/ChatButtons";
 import { ApplicationCommandInputType, ApplicationCommandOptionType, findOption, sendBotMessage } from "@api/Commands";
 import { findGroupChildrenByChildId, NavContextMenuPatchCallback } from "@api/ContextMenu";
-import { addPreSendListener, removePreSendListener } from "@api/MessageEvents";
+import { addMessagePreSendListener, removeMessagePreSendListener } from "@api/MessageEvents";
 import { definePluginSettings, migratePluginSettings } from "@api/Settings";
 import definePlugin, { OptionType } from "@utils/types";
 import { Menu, React } from "@webpack/common";
-
 
 // Big thank you too slientTyping
 
@@ -40,7 +39,7 @@ const settings = definePluginSettings(
         },
     });
 
-const SignatureToggle: ChatBarButton = ({ isMainChat }) => {
+const SignatureToggle: ChatBarButtonFactory = ({ isMainChat }) => {
     const { isEnabled, showIcon } = settings.use(["isEnabled", "showIcon"]);
     const toggle = () => settings.store.isEnabled = !settings.store.isEnabled;
 
@@ -105,12 +104,12 @@ export default definePlugin({
     start: () => {
         if (settings.store.isEnabled) true;
         addChatBarButton("Signature", SignatureToggle);
-        addPreSendListener(handleMessage);
+        addMessagePreSendListener(handleMessage);
     },
     stop: () => {
         if (settings.store.isEnabled) false;
         removeChatBarButton("Signature");
-        removePreSendListener(handleMessage);
+        removeMessagePreSendListener(handleMessage);
 
     },
 
