@@ -9,6 +9,7 @@ import { ApplicationCommandInputType, ApplicationCommandOptionType, findOption, 
 import { findGroupChildrenByChildId, NavContextMenuPatchCallback } from "@api/ContextMenu";
 import { addMessagePreSendListener, removeMessagePreSendListener } from "@api/MessageEvents";
 import { definePluginSettings, migratePluginSettings } from "@api/Settings";
+import { Devs } from "@utils/constants";
 import definePlugin, { OptionType } from "@utils/types";
 import { Menu, React } from "@webpack/common";
 
@@ -96,6 +97,9 @@ export default definePlugin({
     name: "Signature",
     description: "Automated fingerprint/end text",
     authors: [
+        Devs.Ven, 
+        Devs.Rini, 
+        Devs.ImBanana, 
         // Import from EquicordDev for Equicord
         { name: "krystalskullofficial", id: 929208515883569182n }
     ],
