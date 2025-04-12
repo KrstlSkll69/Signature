@@ -9,7 +9,6 @@ import { ApplicationCommandInputType, ApplicationCommandOptionType, findOption, 
 import { findGroupChildrenByChildId, NavContextMenuPatchCallback } from "@api/ContextMenu";
 import { addMessagePreSendListener, removeMessagePreSendListener } from "@api/MessageEvents";
 import { definePluginSettings, migratePluginSettings } from "@api/Settings";
-import { Devs } from "@utils/constants";
 import definePlugin, { OptionType } from "@utils/types";
 import { Menu, React } from "@webpack/common";
 
@@ -20,7 +19,7 @@ const settings = definePluginSettings(
         name: {
             type: OptionType.STRING,
             description: "The signature that will be added to the end of your messages",
-            default: "a chronic discord user"
+            default: "-# This user is under surveillance by the INTERPOL (International Criminal Police Organization) Do not contact this user, he is the subject of a criminal case under 18 U.S.C. [Learn more](<https://discord.com/guidelines>)"
         },
         showIcon: {
             type: OptionType.BOOLEAN,
@@ -51,7 +50,7 @@ const SignatureToggle: ChatBarButtonFactory = ({ isMainChat }) => {
             tooltip={isEnabled ? "Disable Signature" : "Enable Signature"}
             onClick={toggle}
         >
-            <svg width="24" height="24" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 21.333">
+            <svg width="20" height="20" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 21.333">
                 <path fill="currentColor" mask="url(#signature-msg-mask)" d="M2 4.621a.5.5 0 0 1 .854-.353l6.01 6.01c.126.126.17.31.15.487a2 2 0 1 0 1.751-1.751a.59.59 0 0 1-.487-.15l-6.01-6.01A.5.5 0 0 1 4.62 2H11a9 9 0 0 1 8.468 12.054l2.24 2.239a1 1 0 0 1 0 1.414l-4 4a1 1 0 0 1-1.415 0l-2.239-2.239A9 9 0 0 1 2 11z" />
                 {isEnabled && (
                     <>
@@ -88,10 +87,7 @@ const ChatBarContextCheckbox: NavContextMenuPatchCallback = children => {
     );
 };
 
-
-// This is usless for the normal user but is helpful for development since I decided to rework to plugin
 migratePluginSettings("Signature", "SentVia");
-
 
 export default definePlugin({
     name: "Signature",
@@ -143,7 +139,6 @@ export default definePlugin({
         },
     }],
 });
-
 
 // text processing injection processor
 function textProcessing(input: string) {
