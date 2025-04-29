@@ -20,7 +20,15 @@ const settings = definePluginSettings(
         name: {
             type: OptionType.STRING,
             description: "The signature that will be added to the end of your messages",
-            default: "-# This user is under surveillance by the INTERPOL (International Criminal Police Organization) Do not contact this user, he is the subject of a criminal case under 18 U.S.C. [Learn more](<https://discord.com/guidelines>)"
+            default: "a chronic discord user"
+        },
+        textHeader: {
+            description: "What header to preface text with",
+            type: OptionType.SELECT,
+            options: [
+                { label: ">", value: ">", default: true },
+                { label: "-#", value: "-#" }
+            ]
         },
         showIcon: {
             type: OptionType.BOOLEAN,
@@ -66,7 +74,13 @@ const SignatureToggle: ChatBarButtonFactory = ({ isMainChat }) => {
 };
 
 // Big thank you @thororen (discord) who helped me write this const
-const handleMessage = ((channelId, msg) => { if (!settings.store.isEnabled) { msg.content = msg.content; } else { msg.content = textProcessing(msg.content); } });
+const handleMessage = ((channelId, msg) => {
+    if (!settings.store.isEnabled) {
+        msg.content = msg.content;
+    } else {
+        msg.content = textProcessing(msg.content);
+    }
+});
 
 const ChatBarContextCheckbox: NavContextMenuPatchCallback = children => {
     const { isEnabled, contextMenu } = settings.use(["isEnabled", "contextMenu"]);
@@ -141,9 +155,10 @@ export default definePlugin({
     }],
 });
 
+
 // text processing injection processor
 function textProcessing(input: string) {
-    return `${input}\n> ${settings.store.name}`;
+    return `${input}\n${settings.store.textHeader} ${settings.store.name}`;
 }
 
 
