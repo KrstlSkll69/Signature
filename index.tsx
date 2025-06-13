@@ -19,7 +19,7 @@ const settings = definePluginSettings(
     {
         name: {
             type: OptionType.STRING,
-            description: "The signature that will be added to the end of your messages",
+            description: "The signature that will be added to the end of your messages.",
             default: "a chronic discord user"
         },
         textHeader: {
@@ -33,17 +33,17 @@ const settings = definePluginSettings(
         showIcon: {
             type: OptionType.BOOLEAN,
             default: true,
-            description: "Show an icon for toggling the plugin in the chat bar",
+            description: "Show an icon for toggling the plugin in the chat bar.",
             restartNeeded: true,
         },
         contextMenu: {
             type: OptionType.BOOLEAN,
-            description: "Add option to toggle the functionality in the chat input context menu",
+            description: "Add option to toggle the functionality in the chat input context menu.",
             default: true
         },
         isEnabled: {
             type: OptionType.BOOLEAN,
-            description: "Toggle functionality",
+            description: "Toggle functionality.",
             default: true,
         },
     });
@@ -106,11 +106,11 @@ migratePluginSettings("Signature", "SentVia");
 
 export default definePlugin({
     name: "Signature",
-    description: "Automated fingerprint/end text",
+    description: "Automated fingerprint/end text.",
     authors: [
-        Devs.Ven, 
-        Devs.Rini, 
-        Devs.ImBanana, 
+        Devs.Ven,
+        Devs.Rini,
+        Devs.ImBanana,
         // Import from EquicordDev for Equicord
         { name: "krystalskullofficial", id: 929208515883569182n }
     ],
