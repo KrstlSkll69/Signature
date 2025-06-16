@@ -20,10 +20,11 @@ const settings = definePluginSettings(
         name: {
             type: OptionType.STRING,
             description: "The signature that will be added to the end of your messages.",
+            placeholder: "a chronic discord user",
             default: "a chronic discord user"
         },
         textHeader: {
-            description: "What header to preface text with",
+            description: "What header to preface text with.",
             type: OptionType.SELECT,
             options: [
                 { label: ">", value: ">", default: true },
