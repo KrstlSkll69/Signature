@@ -3,7 +3,12 @@ Automated fingerprint/end text
 
 ![](https://cdn.nest.rip/uploads/e57058a4-166e-400e-83c2-19d984c65c9a.png)
 
-![](https://cdn.nest.rip/uploads/ff0c5f9d-f906-45ef-946c-5ad0fbc63d46.png)
+![](https://cdn.nest.rip/uploads/7c67eed0-708c-4e71-9455-721da6241905.png)
+
+> Test Header Settings
+>
+>
+> ![](https://cdn.nest.rip/uploads/12845fab-5c64-4d12-a8a8-3bef207bb209.png)
 
 > The icon
 >
